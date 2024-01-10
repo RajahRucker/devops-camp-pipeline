@@ -3,7 +3,7 @@ pipeline {
         label 'jenkins-agent'
     }
     //TODO("Lab 4 - Artifact Management"): add environment variables
-    nvironment {
+    environment {
         PIPELINE_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
         HARBOR_REGISTRY = 'registry.dev.afsmtddso.com'
         HARBOR_PROJECT = 'r-rucker-harbor-auth'
@@ -18,7 +18,7 @@ pipeline {
                 sh 'git clone https://github.com/RajahRucker/afs-labs-student.git'
                 //TODO("Lab 4 - Artifact Management"): add COMMIT_HASH variable
             }
-            ir('afs-labs-student') {
+            dir('afs-labs-student') {
                     script {
                         env.COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
                     }
