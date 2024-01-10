@@ -17,12 +17,13 @@ pipeline {
                 //TODO("Lab 3 - Introduction to Automated Builds"): add github url
                 sh 'git clone https://github.com/RajahRucker/afs-labs-student.git'
                 //TODO("Lab 4 - Artifact Management"): add COMMIT_HASH variable
-            }
-            dir('afs-labs-student') {
+                dir('afs-labs-student') {
                     script {
                         env.COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
                     }
                 }
+            }
+            
         }
         stage('Application docker build') {
             steps {
